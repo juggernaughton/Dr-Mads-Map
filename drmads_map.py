@@ -9,7 +9,7 @@ class Scene(object):
 class MainRoom(Scene):
 	def enter(self):
 		print "You are in the main room"
-		print "You have two choices: 'stay' in the main room, or... 'run' to your left."
+		print "You have two choices: 'stay' in the main room, or... 'run' to your left.\n"
 		action = raw_input("> ")
 		
 		if action == 'stay':
@@ -18,7 +18,12 @@ class MainRoom(Scene):
 		elif action == 'run':
 			print "You chose to run like the little bitch you are."
 			return 'multiplication'
+		else:
+			print "\nYou suck at this bruh.\n"
+			exit(1)
+			
 class Multiplication(Scene):
+
 	def enter(self):
 		print "You are in the Multiplication Room."
 	
@@ -54,8 +59,9 @@ class Engine(object):
  		while True:
  			print "\n\t\t-----------------"
  			next_scene_name = current_scene.enter()
- 			next_scene = Engine.scenes.get(next_scene_name)
-  			
+ 			print "This is the current scene: ", next_scene_name
+ 			current_scene = Engine.scenes.get(next_scene_name)
+  			print "This is the next scene: ", current_scene
 	
 startengine = Engine('main_room')
 
